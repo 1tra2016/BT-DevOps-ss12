@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+Nguyên nhân lỗi: dòng proxy_pass http://localhost:8080 thiếu dấu ; cuối dòng
+chạy sudo nginx -t để test
+chạy sudo systemctl reload nginx để reload
